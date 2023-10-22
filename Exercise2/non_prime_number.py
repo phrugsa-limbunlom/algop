@@ -14,14 +14,10 @@ def is_prime_number(number):
 
 def find_non_prime_number(num1, num2):
     num1, num2 = int(num1), int(num2)
-    non_prime_number = []
     if num2 < num1:
         num1, num2 = num2, num1
 
-    for i in range(num1, num2 + 1):
-        if not is_prime_number(i):
-            non_prime_number.append(i)
-
+    non_prime_number = [i for i in range(num1, num2 + 1) if not is_prime_number(i)]
     return non_prime_number
 
 
