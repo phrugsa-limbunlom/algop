@@ -80,7 +80,7 @@ def analyze_grade_output(output):
 if __name__ == "__main__":
     input_students, number_of_students = read_input_file()
     output_students = process_students_mark(input_students, int(number_of_students))
-    write_output_file(output_students, "output.txt")
+    write_output_file(output_students, "ex5data_out.txt")
 
     number_of_first_class_students, number_of_second_class_students, number_of_third_class_students, number_of_failed_students, all_failed_students = analyze_grade_output(
         output_students)
