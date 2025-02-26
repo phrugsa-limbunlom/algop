@@ -1,8 +1,26 @@
-def is_palindrome(word):
+def is_palindrome(word: str) -> bool:
+    """
+    Checks if a word is a palindrome.
+
+    Parameters:
+    word (str): The string to check for palindrome property
+
+    Returns:
+    bool: True if the word is a palindrome, False otherwise
+    """
     return word[0:] == word[::-1]
 
 
-def find_frequent_letter_and_digit(word):
+def find_frequent_letter_and_digit(word: str) -> list:
+    """
+    Finds the most frequent letters and digits in a string.
+
+    Parameters:
+    word (str): The input string to analyze
+
+    Returns:
+    list: List of characters that appear most frequently in the input
+    """
     word = word.upper()
     word_frequency = dict()
 
@@ -18,7 +36,16 @@ def find_frequent_letter_and_digit(word):
     return word_maximum_frequency
 
 
-def count_letter_space_digit(word):
+def count_letter_space_digit(word: str) -> dict:
+    """
+    Counts the number of letters, spaces, and digits in a string.
+
+    Parameters:
+    word (str): The input string to analyze
+
+    Returns:
+    dict: Dictionary containing counts of letters, spaces, and digits
+    """
     word_count_dict = {"letter": 0, "space": 0, "digit": 0}
     for w in word:
         if w.isalpha():

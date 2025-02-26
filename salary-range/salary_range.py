@@ -1,13 +1,32 @@
-def filter_employees_by_salaries(employees, minimum_salary, maximum_salary):
+def filter_employees_by_salaries(employees: list, minimum_salary: int, maximum_salary: int) -> list:
+    """
+    Filters employees whose salaries fall within given range.
+
+    Parameters:
+    employees (list): List of employee tuples (name, position, salary)
+    minimum_salary (int): Lower bound of salary range
+    maximum_salary (int): Upper bound of salary range
+
+    Returns:
+    list: Filtered list of employees within salary range
+    """
     filtered_employees = []
     for employee in employees:
         if minimum_salary <= int(employee[2]) <= maximum_salary:
             filtered_employees.append(employee)
-    # return sorted(filtered_employees, key=lambda e: e[-1], reverse=True)
     return filtered_employees
 
 
-def sort_employees_by_salaries(employees):
+def sort_employees_by_salaries(employees: list) -> list:
+    """
+    Sorts employees by salary in descending order using bubble sort.
+
+    Parameters:
+    employees (list): List of employee tuples to sort
+
+    Returns:
+    list: Sorted list of employees by salary
+    """
     for i in range(len(employees)):
         for j in range(i):
             if employees[i][2] >= employees[j][2]:
@@ -15,7 +34,16 @@ def sort_employees_by_salaries(employees):
     return employees
 
 
-def format_employees_result(employees):
+def format_employees_result(employees: list) -> str:
+    """
+    Formats employee list as a string with each employee on new line.
+
+    Parameters:
+    employees (list): List of employee tuples to format
+
+    Returns:
+    str: Formatted string with each employee on new line
+    """
     final_filtered_employees = ""
     for employee in employees:
         final_filtered_employees += str(employee) + "\n"

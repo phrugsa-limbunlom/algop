@@ -2,19 +2,43 @@ from datetime import datetime
 
 
 class InvalidBirthDateException(Exception):
+    """
+    Custom exception for invalid birth date inputs
+    """
     def __init__(self, message):
         super().__init__(message)
 
 
 class BirthDate:
-    def __init__(self, date):
+    """
+    Handles birth date operations including format conversion and age calculation
+    """
+    def __init__(self, date: str):
+        """
+        Initialize BirthDate object.
+
+        Parameters:
+        date (str): Date string in MM/DD/YYYY format
+        """
         self.date = date
 
-    def change_to_european_format(self):
+    def change_to_european_format(self) -> str:
+        """
+        Converts US date format to European format.
+
+        Returns:
+        str: Date string in DD/MM/YYYY format
+        """
         input_date = datetime.strptime(self.date, '%m/%d/%Y').date()
         return input_date.strftime("%d/%m/%Y")
 
-    def calculate_age(self):
+    def calculate_age(self) -> int:
+        """
+        Calculates current age based on birth date.
+
+        Returns:
+        int: Age in years
+        """
         birth_date = datetime.strptime(self.date, '%m/%d/%Y').date()
         current_date = datetime.now().date()
         year_difference = current_date.year - birth_date.year
@@ -26,7 +50,16 @@ class BirthDate:
         return year_difference
 
 
-def is_valid_date(input_date):
+def is_valid_date(input_date: str) -> bool:
+    """
+    Validates date format and values.
+
+    Parameters:
+    input_date (str): Date string in MM/DD/YYYY format
+
+    Returns:
+    bool: True if date is valid, False otherwise
+    """
     month, day, year = map(int, input_date.split('/'))
 
     if month < 1 or month > 12:

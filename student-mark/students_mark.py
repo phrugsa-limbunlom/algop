@@ -1,7 +1,18 @@
 import numpy as np
 
 
-def calculate_grade(exam, coursework, overall):
+def calculate_grade(exam: float, coursework: float, overall: float) -> str:
+    """
+    Calculates the grade based on exam, coursework, and overall marks.
+
+    Parameters:
+    exam (float): The exam mark
+    coursework (float): The coursework mark
+    overall (float): The overall mark
+
+    Returns:
+    str: The grade ('first', 'second', 'third', or 'failed')
+    """
     if exam < 30 or coursework < 30:
         return "failed"
 
@@ -15,7 +26,17 @@ def calculate_grade(exam, coursework, overall):
         return "failed"
 
 
-def process_students_mark(students_data, number):
+def process_students_mark(students_data: np.ndarray, number: int) -> np.ndarray:
+    """
+    Processes student marks and creates structured array with grades.
+
+    Parameters:
+    students_data (np.ndarray): Array containing student data
+    number (int): Number of students to process
+
+    Returns:
+    np.ndarray: Sorted structured array containing student information and grades
+    """
     studType = [('reg_number', int), ('exam_mark', float), ('coursework_mark', float),
                 ('overall_mark', float), ('grade', 'S20')]
     students = np.array([(0, 0, 0, 0, '') for _ in range(number)], dtype=studType)
@@ -32,14 +53,32 @@ def process_students_mark(students_data, number):
     return sorted_students
 
 
-def write_output_file(students, output_file):
+def write_output_file(students: np.ndarray, output_file: str) -> None:
+    """
+    Writes student data to output file.
+
+    Parameters:
+    students (np.ndarray): Array containing processed student data
+    output_file (str): Name of the file to write to
+
+    Returns:
+    None
+    """
     with open(output_file, 'w') as f:
         print(students, file=f)
     print("Write output file successfully!")
     return
 
 
-def read_input_file():
+def read_input_file() -> tuple:
+    """
+    Reads student data from input file.
+
+    Returns:
+    tuple: Contains two elements:
+        - np.ndarray: Raw student data
+        - str: Number of students
+    """
     while True:
         try:
             file_name = input("Input file name (include extension) : ")
@@ -61,7 +100,21 @@ def read_input_file():
             print("Incorrect file name!")
 
 
-def analyze_grade_output(output):
+def analyze_grade_output(output: np.ndarray) -> tuple:
+    """
+    Analyzes grade distribution from processed student data.
+
+    Parameters:
+    output (np.ndarray): Array containing processed student data
+
+    Returns:
+    tuple: Contains five elements:
+        - int: Count of first class grades
+        - int: Count of second class grades
+        - int: Count of third class grades
+        - int: Count of failed grades
+        - list: Registration numbers of failed students
+    """
     count_first, count_second, count_third, count_failed = 0, 0, 0, 0
     failed_students = []
     for i in range(output.size):
